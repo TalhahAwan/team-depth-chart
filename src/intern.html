@@ -1,0 +1,15 @@
+<div class="col-sm-4">
+    <div class="card employee-card">
+        <div class="card-header">
+            <h2 class="bg-primary text-white card-title">${empIntern[i].name}</h2>
+            <h3 class="bg-success text-white card-title">Intern</h3>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="text-primary list-group-item">ID: $${empIntern[i].id}</li>
+                <li class="text-primary list-group-item">Email: <a href="mailto:${empIntern[i].email}">${empIntern[i].email}</a></li>
+                <li class="text-danger list-group-item">School: ${empIntern[i].school.school}></li>
+            </ul>
+        </div>
+    </div>
+</div>
