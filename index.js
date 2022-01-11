@@ -63,14 +63,6 @@ const managerQuestion = () => {
     })
 };
 
-const engineerQuestion = () => {
-    return inquirer.prompt({
-        type: "input",
-        name: "gitHub",
-        message: "What is the employee's github username?",
-    })
-};
-
 const addEmployee = () => {
     return inquirer.prompt({
         type: "input",
