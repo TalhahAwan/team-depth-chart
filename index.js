@@ -8,9 +8,9 @@ const Manager = require('./lib/Manager')
 
 
 let employeeChart = [];
-let empEngineer = [];
-let empIntern = [];
-let empManager = [];
+let engineerArr = [];
+let internArr = [];
+let managerArr = [];
 
 const questions = () => {
     return inquirer.prompt([
@@ -88,7 +88,7 @@ async function makeTeam() {
             const engineerInput = await engineerQuestion();
             const {gitHub} = engineerInput;
             let engineer = new Engineer(name, id, email, gitHub);
-            empEngineer.push(engineer);
+            engineerArr.push(engineer);
             await confirmEmployee();
         break;
 
@@ -96,7 +96,7 @@ async function makeTeam() {
             const internInput = await internQuestion();
             const {school} = internInput;
             let intern = new Intern(name, id, email, school);
-            empIntern.push(intern);
+            internArr.push(intern);
             await confirmEmployee();
         break;
 
@@ -104,7 +104,7 @@ async function makeTeam() {
             const managerInput = await managerQuestion();
             const {officeNumber} = managerInput;
             let manager = new Manager(name, id, email, officeNumber);
-            empManager.push(manager);
+            managerArr.push(manager);
             await confirmEmployee();
         break;
     }
@@ -112,7 +112,7 @@ async function makeTeam() {
 
 async function createHtml(data) {
     await makeTeam();
-    fs.writeFileSync('./dist/index.html', generateHtml(empEngineer, empIntern, empManager))
+    fs.writeFileSync('./dist/index.html', generateHtml(engineerArr, internArr, managerArr))
 };
 
 const init = () => {

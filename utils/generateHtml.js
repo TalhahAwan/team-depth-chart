@@ -1,12 +1,11 @@
-const inquirer = require('inquirer')
-const fs = require('fs')
-const path = require('path')
+// const inquirer = require('inquirer')
+// const fs = require('fs')
 
-const Engineer = require('./lib/Engineer')
-const Intern = require('./lib/Intern')
-const Manager = require('./lib/Manager')
+// const Engineer = require('./lib/Engineer')
+// const Intern = require('./lib/Intern')
+// const Manager = require('./lib/Manager')
 
-function generateHtml(empEngineer, empIntern, empManager) {
+function generateHtml(engineerData, internData, managerData) {
     return `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -27,9 +26,9 @@ function generateHtml(empEngineer, empIntern, empManager) {
 
         <div class = "container">
             <div class = "row d-flex justify-content-center">
-                ${generateEngineer}(empEngineer)
-                ${generateIntern}(empIntern)
-                ${generateManager}(empManager)
+                ${generateEngineer(engineerData)}
+                ${generateIntern(internData)}
+                ${generateManager(managerData)}
             </div>
         </div>
         
@@ -37,21 +36,21 @@ function generateHtml(empEngineer, empIntern, empManager) {
     </html>`
 }
 
-function generateEngineer(empEngineer) {
+function generateEngineer(engineerData) {
     let engineerhtml = "";
-    for (i=0; i < empEngineer.length; i ++) {
+    for (i=0; i < engineerData.length; i ++) {
 
         engineerhtml += `<div class="col-sm-4">
         <div class="card employee-card">
             <div class="card-header">
-                <h2 class="bg-primary text-white card-title">${empEngineer[i].name}</h2>
+                <h2 class="bg-primary text-white card-title">${engineerData[i].name}</h2>
                 <h3 class="bg-success text-white card-title">Engineer</h3>
             </div>
             <div class="card-body">
                 <ul class="list-group">
-                    <li class="text-primary list-group-item">ID: $${empEngineer[i].id}</li>
-                    <li class="text-primary list-group-item">Email: <a href="mailto:${empEngineer[i].email}">${empEngineer[i].email}</a></li>
-                    <li class="text-danger list-group-item">GitHub: <a href="https://github.com/${empEngineer[i].gitHub.gitHub}" target="_blank" rel="noopener noreferrer">${empEngineer[i].gitHub.gitHub}</a></li>
+                    <li class="text-primary list-group-item">ID: ${engineerData[i].id}</li>
+                    <li class="text-primary list-group-item">Email: <a href="mailto:${engineerData[i].email}">${engineerData[i].email}</a></li>
+                    <li class="text-primary list-group-item">GitHub: <a href="https://github.com/${engineerData[i].gitHub}" target="_blank" rel="noopener noreferrer">${engineerData[i].gitHub}</a></li>
                 </ul>
             </div>
         </div>
@@ -60,21 +59,21 @@ function generateEngineer(empEngineer) {
     return engineerhtml;
 }
 
-function generateIntern(empIntern) {
+function generateIntern(internData) {
     let internhtml = "";
-    for (i=0; i < empIntern.length; i ++) {
+    for (i=0; i < internData.length; i ++) {
 
         internhtml += `<div class="col-sm-4">
         <div class="card employee-card">
             <div class="card-header">
-                <h2 class="bg-primary text-white card-title">${empIntern[i].name}</h2>
+                <h2 class="bg-primary text-white card-title">${internData[i].name}</h2>
                 <h3 class="bg-success text-white card-title">Intern</h3>
             </div>
             <div class="card-body">
                 <ul class="list-group">
-                    <li class="text-primary list-group-item">ID: $${empIntern[i].id}</li>
-                    <li class="text-primary list-group-item">Email: <a href="mailto:${empIntern[i].email}">${empIntern[i].email}</a></li>
-                    <li class="text-danger list-group-item">School: ${empIntern[i].school.school}></li>
+                    <li class="text-primary list-group-item">ID: ${internData[i].id}</li>
+                    <li class="text-primary list-group-item">Email: <a href="mailto:${internData[i].email}">${internData[i].email}</a></li>
+                    <li class="text-primary list-group-item">School: ${internData[i].school}</li>
                 </ul>
             </div>
         </div>
@@ -83,21 +82,21 @@ function generateIntern(empIntern) {
     return internhtml;
 }
 
-function generateManager(empManager) {
+function generateManager(managerData) {
     let managerhtml = "";
-    for (i=0; i < empManager.length; i ++) {
+    for (i=0; i < managerData.length; i ++) {
 
         managerhtml += `<div class="col-sm-4">
         <div class="card employee-card">
             <div class="card-header">
-                <h2 class="bg-primary text-white card-title">${empManager[i].name}</h2>
+                <h2 class="bg-primary text-white card-title">${managerData[i].name}</h2>
                 <h3 class="bg-success text-white card-title">Manager</h3>
             </div>
             <div class="card-body">
                 <ul class="list-group">
-                    <li class="text-primary list-group-item">ID: $${empManager[i].id}</li>
-                    <li class="text-primary list-group-item">Email: <a href="mailto:${empManager[i].email}">${empManager[i].email}</a></li>
-                    <li class="text-danger list-group-item">officeNumber: ${empManager[i].officeNumber.officeNumber}"></li>
+                    <li class="text-primary list-group-item">ID: ${managerData[i].id}</li>
+                    <li class="text-primary list-group-item">Email: <a href="mailto:${managerData[i].email}">${managerData[i].email}</a></li>
+                    <li class="text-primary list-group-item">officeNumber: ${managerData[i].officeNumber}</li>
                 </ul>
             </div>
         </div>
